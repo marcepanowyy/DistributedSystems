@@ -1,0 +1,14 @@
+{
+    "question": "What's your favorite cocktail?",
+    "votes": [
+        {
+            "answer": "Gin and Tonic"
+        },
+        {
+            "answer": "Mojito"
+        },
+        {
+            "answer": "Rum and Coke"
+        }
+    ]
+}
