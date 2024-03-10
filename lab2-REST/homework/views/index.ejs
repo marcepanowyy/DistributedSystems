@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Recipe searcher</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfHHJIpAAAAAGXR1l2aSXLZlp0Uj8KQlA5CJjVd"></script>
+
+</head>
+
+<body>
+
+<div class="ui text container raised segment" style="margin:2rem; padding: 1rem 7rem">
+
+    <form id="verify-form" class="ui form" action="http://localhost:8080/product" method="GET">
+
+        <h1 style="text-align: center; padding: 1rem">Discover recipes and their calorie counts by the name of the product</h1>
+
+        <div class="field" style="padding: 1rem 4rem">
+
+            <label for="product">Enter the product name:</label>
+            <input type="text" id="product" name="search" required min="3" placeholder="product name">
+
+            <input type="submit" value="Submit" class="ui button" style="padding: 0.7rem; margin: 1rem 0">
+
+        </div>
+
+    </form>
+
+</div>
+
+<div id="result" style="padding-bottom: 2rem"></div>
+<div id="loader-container" class="ui active centered inline loader" style="display: flex; justify-content: center; margin-top: 20px;"></div>
+
+<script>
+
+    const form = document.getElementById("verify-form");
+    const resultContainer = document.getElementById("result");
+    const loader = document.getElementById("loader-container");
+    loader.style.display = "none";
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        submitForm();
+    });
+
+    function submitForm() {
+
+        const product = form.elements["product"].value;
+        loader.style.display = "block";
+
+        // https://developers.google.com/recaptcha/docs/v3?hl=pl
+
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LfHHJIpAAAAAGXR1l2aSXLZlp0Uj8KQlA5CJjVd', {action: 'submit'})
+                .then(function(token) {
+                    sendData(product, token);
+            });
+        });
+
+    }
+
+    function sendData(product, token){
+
+        const url = "http://localhost:8080/product?product=" + product;
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + token // token from reCAPTCHA
+            }
+        })
+        .then(response => {
+            return response.text();
+        })
+        .then(html => {
+            loader.style.display = "none";
+            resultContainer.innerHTML = html;
+        })
+        .catch(error => {
+            loader.style.display = "none";
+            console.error(error);
+        });
+    }
+
+</script>
+</body>
+</html>

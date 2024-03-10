@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes</title>
+</head>
+
+<body>
+
+<div class="ui text container raised segment">
+
+
+    <h1 style="text-align: center; padding: 1rem">Recipes with Nutrition Information</h1>
+
+    <div style="display: flex; align-items: center; justify-content: space-around; margin-bottom: 1rem">
+
+        <ul class="ui list" style="padding: 1rem">
+            <% recipesNutrition.forEach(recipe => { %>
+                <div class="item" style="margin-bottom: 1rem">
+                    <strong> <%= recipe.name %>  </strong>
+                    <%= recipe.calories %>kcal
+                </div>
+            <% }); %>
+        </ul>
+
+        <img src="<%= img %>" class="ui image" alt="Status Image" style="width: 380px">
+
+    </div>
+
+</div>
+
+
+</body>
