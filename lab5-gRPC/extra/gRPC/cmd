@@ -1,0 +1,2 @@
+// to create proto files run the following command:
+npx proto-loader-gen-types --grpcLib=@grpc/grpc-js --outDir ./proto/generated ./proto/random.proto

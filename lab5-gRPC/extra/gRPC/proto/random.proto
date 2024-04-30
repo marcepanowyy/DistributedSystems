@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package randomPackage;
+
+service RandomService {
+  rpc Ping(PingRequest) returns (PongResponse) {}
+  rpc RandomNumberGenerator(RandomNumberRequest) returns (stream RandomNumberResponse) {}
+  rpc TodoList(stream TodoRequest) returns (stream TodoResponse) {}
+}
+
+message PingRequest {
+  string message = 1;
+}
+
+message PongResponse {
+  string message = 1;
+}
+
+message RandomNumberRequest {
+  int32 min = 1;
+  int32 max = 2;
+}
+
+message RandomNumberResponse {
+  int32 number = 1;
+}
+
+message TodoRequest {
+  string task = 1;
+  string status = 2;
+}
+
+message TodoResponse {
+  repeated TodoRequest todos = 1;
+}
+
