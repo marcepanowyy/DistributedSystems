@@ -5,7 +5,7 @@ package randomPackage;
 service RandomService {
   rpc Ping(PingRequest) returns (PongResponse) {}
   rpc RandomNumberGenerator(RandomNumberRequest) returns (stream RandomNumberResponse) {}
-  rpc TodoList(stream TodoRequest) returns (stream TodoResponse) {}
+  rpc TodoList(stream TodoRequest) returns (TodoResponse) {}
 }
 
 message PingRequest {
