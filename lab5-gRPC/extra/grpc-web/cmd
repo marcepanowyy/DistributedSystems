@@ -1,0 +1,14 @@
+// https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld
+
+protoc
+npm install protoc-gen-js
+npm install protoc-gen-grpc-web
+
+protoc -I. helloworld.proto --js_out=import_style=commonjs:. --grpc-web_out=import_style=commonjs,mode=grpcwebtext:.
+
+
+npm install
+npx webpack ./client.js
+
+docker run -d -v ${PWD}/envoy.yaml:/etc/envoy/envoy.yaml:ro -p 8080:8080 -p 9901:9901 envoyproxy/envoy:v1.22.0
+
