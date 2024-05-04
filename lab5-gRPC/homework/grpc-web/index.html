@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>gRPC-Web</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js" defer></script>
+  <script src="./dist/main.js" defer></script>
+
+</head>
+
+<body>
+
+<div class="text container raised segment" style="display: flex; justify-content: center; padding: 1rem">
+
+  <div class="raised segment" style="width:35%; height: 38rem; padding: 1rem 4rem;">
+
+    <h1 style="text-align: center; padding: 0.5rem">Task Manager</h1>
+
+    <form id="task-form" class="ui form">
+
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" style="margin-bottom: 1rem" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required style="margin-bottom: 1rem"></textarea>
+
+      <label for="status">Status:</label>
+
+      <select id="status" name="status" required style="margin-bottom: 1rem">
+
+        <option value="OPEN" selected>OPEN</option>
+        <option value="IN_PROGRESS">IN PROGRESS</option>
+        <option value="DONE">DONE</option>
+
+      </select>
+
+      <button type="submit" class="ui button">Add Task</button>
+    </form>
+
+    <div class="ui">
+      <button id="refresh-button" class="ui button" style="margin-top: 1rem">Refresh To See Changes</button>
+    </div>
+
+    <div class="ui">
+      <button id="sample-data-button" class="ui button" style="margin-top: 1rem">Generate Sample Data</button>
+    </div>
+
+  </div>
+
+  <div id="my-tasks" class=" raised segment" style="width: 55%; min-height: 38rem;padding: 1rem 4rem; border-left: gray 1px solid">
+
+      <h1 style="text-align: center; padding: 0.5rem">My Tasks</h1>
+      <div id="task-list" class="ui cards" style="padding: 1rem;display: flex; flex-direction: column; align-items: center;justify-content: center">
+      </div>
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="ui modal" id="main-modal">
+
+  <i class="close icon"></i>
+
+  <div class="header" id="modal-title">
+    Task Editor
+  </div>
+
+  <div class="content">
+    <div class="description" id="modal-description"></div> <br>
+    <div class="meta" id="modal-status"></div>
+  </div>
+
+  <div class="actions">
+
+    <div class="ui blue right labeled icon button" id="edit-button">
+      Change status
+      <i class="edit icon"></i>
+    </div>
+
+    <div class="ui negative right labeled icon button" id="delete-button">
+      Delete
+      <i class="trash icon"></i>
+    </div>
+
+    <div class="ui black deny button" id="cancel-button">
+      Cancel
+    </div>
+
+  </div>
+
+</div>
+
+<div class="ui edit modal" id="edit-modal">
+
+  <i class="close icon"></i>
+
+  <div class="header" id="edit-modal-title">Change Task Status</div>
+
+  <div class="content">
+
+    <div class="description" id="edit-modal-description">Select the new status for the task:</div> <br>
+
+    <select class="ui dropdown" id="edit-modal-status">
+      <option value="OPEN">OPEN</option>
+      <option value="IN_PROGRESS">IN PROGRESS</option>
+      <option value="DONE">DONE</option>
+
+    </select>
+
+  </div>
+
+  <div class="actions">
+
+    <div class="ui blue right labeled icon button" id="edit-button-confirm">
+      Change
+      <i class="edit icon"></i>
+    </div>
+
+    <div class="ui black deny button" id="cancel-button-edit">
+      Cancel
+    </div>
+
+  </div>
+
+</div>
+
+<div class="ui delete modal" id="delete-modal">
+
+  <i class="close icon"></i>
+
+  <div class="header" id="delete-modal-title">Delete Task</div>
+
+  <div class="content">
+    <div class="description" id="delete-modal-description">Are you sure you want to delete this task?</div>
+  </div>
+
+  <div class="actions">
+
+    <div class="ui negative right labeled icon button" id="delete-button-confirm">
+      Delete
+      <i class="trash icon"></i>
+
+    </div>
+
+    <div class="ui black deny button" id="cancel-button-delete">
+      Cancel
+    </div>
+
+  </div>
+</div>
+
+
+
+</body>
+</html>

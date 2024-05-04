@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package taskPackage;
+
+enum Status {
+  OPEN = 0;
+  IN_PROGRESS = 1;
+  DONE = 2;
+}
+
+message Task {
+  string title = 1;
+  string description = 2;
+  Status status = 3;
+}
+
+message CreateTaskRequest {
+  Task task = 1;
+}
+
+message CreateTaskResponse {
+  string message = 1;
+}
+
+message EditTaskRequest {
+  string title = 1;
+  Status status = 2;
+}
+
+message EditTaskResponse {
+  string message = 1;
+}
+
+message DeleteTaskRequest {
+  string title = 1;
+}
+
+message DeleteTaskResponse {
+  string message = 1;
+}
+
+message Empty {}
+
+service TaskService {
+
+  // unary call
+  rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse) {}
+
+  // unary call
+  rpc EditTask(EditTaskRequest) returns (EditTaskResponse) {}
+
+  // unary call
+  rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse) {}
+
+  // server streaming call
+  rpc GetAllTasks(Empty) returns (stream Task) {}
+
+}
+
