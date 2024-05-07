@@ -1,7 +1,7 @@
 #### Source
 https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld
 
-#### CHECK IF PROTOC IS INSTALLED if not - install it
+#### Check if proto is installed if not - install it
 ```
 protoc
 ```
