@@ -1,0 +1,26 @@
+{
+  "name": "rabbitmq",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup": "ts-node src/config/setup.ts",
+    "doctor:1": "ts-node src/doctor.ts doctor-1",
+    "doctor:2": "ts-node src/doctor.ts doctor-2",
+    "technician:1": "ts-node src/technician.ts technician-1 knee hip",
+    "technician:2": "ts-node src/technician.ts technician-2 knee elbow",
+    "admin": "ts-node src/admin.ts admin-1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/node": "^20.12.12",
+    "nodemon": "^3.1.1",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.4"
+  }
+}
